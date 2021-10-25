@@ -250,14 +250,14 @@ var cookie = {
     }
 };
 
-// fuck firefox
-
-function fuckFirefox(chance) {
-	if (typeof InstallTrigger !== 'undefined'){
-		if (Math.floor((Math.random() * chance) + 1) == 1){
-			document.location = "https://maki.cafe/feuerfuchs/";
-		}
-	}
-}
+// fuck firefox // I use firefox now fuck chrome actually
+//
+//function fuckFirefox(chance) {
+//	if (typeof InstallTrigger !== 'undefined'){
+//		if (Math.floor((Math.random() * chance) + 1) == 1){
+//			document.location = "https://maki.cafe/feuerfuchs/";
+//		}
+//	}
+//}
 
 fuckFirefox(30)
