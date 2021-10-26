@@ -331,10 +331,10 @@ var commands = {
 	"game": {
 		desc: "play a really cool video game made by me",
 		action: function(c) {
-			c.print("fuck chrome :c")
-			//setTimeout( function() {
-			//	document.location = "/game";
-			//}, 500)
+			// c.print("fuck chrome :c")
+			setTimeout( function() {
+				document.location = "/game/noJS.html";
+			}, 500)
 		}
 	},
 }

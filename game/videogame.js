@@ -6,6 +6,12 @@ var playerHeight = 37;
 var playerSpeed = 1;
 var score = 0;
 
+// fuck chrome
+
+if (window.chrome != null) {
+	alert("just use firefox already")
+}
+
 // input
 
 window.addEventListener("keydown", function(e) {
