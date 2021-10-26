@@ -93,6 +93,18 @@ function hueCommand(newDegree){
 	for (const id of ids) {
 		document.getElementById(id).style.filter = "hue-rotate("+degree+"deg)";
 	}
+
+	localStorage.setItem("hueRotate", degree);
+}
+
+try {
+	const newDegree = parseInt(localStorage.getItem("hueRotate"));
+	console.log(newDegree)
+	if (newDegree != null && !Number.isNaN(newDegree)) {
+		hueCommand(newDegree);
+	}
+} catch(error) {
+	// do nothing
 }
 
 // random color (fuck chrome)
