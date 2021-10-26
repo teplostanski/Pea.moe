@@ -69,12 +69,13 @@ var commands = {
 			}
 			if (!msgTimer) {
 				msgTimer = true;
-				let img = document.createElement("div");
 				//eeee don't abuse please
-				img.style.backgroundImage = "url(https://maki.cafe/discord-message?to=pea&name="+escape(username)+"&message="+escape(c.msg)+")";
-				document.body.appendChild(img);
-				setTimeout(function() { document.body.removeChild(img) }.bind(img), 8000);
+				// let img = document.createElement("div");
+				// img.style.backgroundImage = "url(https://maki.cafe/discord-message?to=pea&name="+escape(username)+"&message="+escape(c.msg)+")";
+				// document.body.appendChild(img);
+				// setTimeout(function() { document.body.removeChild(img) }.bind(img), 8000);
 				c.print("Your message might have been sent!");
+				c.print("actually no it never got sent sorry lol");
 				setTimeout(function() { msgTimer = false}, 2500); return;
 			}
 			c.print("AAAAAHHH Please don't spam me!!")
@@ -116,20 +117,20 @@ var commands = {
 	"rainbow": {
 		hidden: true,
 		action: function(c) {
-			//rainbowToggle();
-			//if (!rainbowColorActive) {
-			//	c.print("rainbow mode off :("); return;
-			//}
-			//c.print("COLORS!!!");
-			c.print("fuck chrome");
+			rainbowToggle();
+			if (!rainbowColorActive) {
+				c.print("rainbow mode off :("); return;
+			}
+			c.print("COLORS!!!");
+			// c.print("fuck chrome");
 		},
-		block: ["firefox"],
-		block_action: function(c) {
-			c.print("get out dont use firefuck")
-			setTimeout(function() {
-				fuckFirefox(5)
-			}, 2000);
-		}
+		// block: ["firefox"],
+		// block_action: function(c) {
+		// 	c.print("get out dont use firefuck")
+		// 	setTimeout(function() {
+		// 		fuckFirefox(5)
+		// 	}, 2000);
+		// }
 	},
 	"rainbowspeed": {
 		hidden: true,
@@ -140,30 +141,30 @@ var commands = {
 			let msgInt = parseInt(c.msg);
 			rainbowSpeed(msgInt);
 		},
-		block: ["firefox"],
-		block_action: function(c) {
-			c.print("why are you trying this you can't even use rainbow you firecuck")
-			setTimeout(function() {
-				fuckFirefox(5)
-			}, 3000);
-		}
+		// block: ["firefox"],
+		// block_action: function(c) {
+		// 	c.print("why are you trying this you can't even use rainbow you firecuck")
+		// 	setTimeout(function() {
+		// 		fuckFirefox(5)
+		// 	}, 3000);
+		// }
 	},
 	"color": {
 		alias: ["hue", "colour"],
 		desc: "Change the color",
 		usage: "(0-360)",
 		action: function(c) {
-			//hueCommand(c.msg);
-			//c.print("color set to "+c.msg+" degrees");
-			c.print("fuck chrome");
+			hueCommand(c.msg);
+			c.print("color set to "+c.msg+" degrees");
+			// c.print("fuck chrome");
 		},
-		block: ["firefox"],
-		block_action: function(c) {
-			c.print("firefox more like firegay")
-			setTimeout(function() {
-				fuckFirefox(5)
-			}, 2000);
-		}		
+		// block: ["firefox"],
+		// block_action: function(c) {
+		// 	c.print("firefox more like firegay")
+		// 	setTimeout(function() {
+		// 		fuckFirefox(5)
+		// 	}, 2000);
+		// }		
 	},
 	"animations": {
 		desc: "lists animations you can play",
@@ -345,9 +346,9 @@ var terminal = new Term({
 		"Type \"help\" for a list of commands.",
 		"Type \"name (your name)\" to tell me your name!"
 	],
-	block: {
-		"firefox": "fuck you use a better browser"
-	},
+	// block: {
+	// 	"firefox": "fuck you use a better browser"
+	// },
 	error: "Command not found! Try \"help\"",
 	cmds: (function() {
 		let obj = {};
@@ -355,35 +356,36 @@ var terminal = new Term({
 			let key = Object.keys(commands)[i];
 
 			// let block happen
-			let block = false;
-			if (commands[key].block) {
-				let blocks = commands[key].block;
-				if (blocks.includes("opera")) if ((!!window.opr && !!opr.addons) || !!window.opera || navigator.userAgent.indexOf(' OPR/') >= 0) block = true;
-				if (blocks.includes("firefox")) if (typeof InstallTrigger !== 'undefined') block = true;
-				if (blocks.includes("safari")) if (/constructor/i.test(window.HTMLElement) || (function (p) { return p.toString() === "[object SafariRemoteNotification]"; })(!window['safari'] || (typeof safari !== 'undefined' && safari.pushNotification))) block = true;
-				if (blocks.includes("ie")) if (/*@cc_on!@*/false || !!document.documentMode) block = true;
-				if (blocks.includes("edge")) if (!isIE && !!window.StyleMedia) block = true;
-				if (blocks.includes("chrome")) if (!!window.chrome && !!window.chrome.webstore) block = true;
-				if (blocks.includes("blink")) if ((isChrome || isOpera) && !!window.CSS) block = true;
-			}
+			// let block = false;
+			// if (commands[key].block) {
+			// 	let blocks = commands[key].block;
+			// 	if (blocks.includes("opera")) if ((!!window.opr && !!opr.addons) || !!window.opera || navigator.userAgent.indexOf(' OPR/') >= 0) block = true;
+			// 	if (blocks.includes("firefox")) if (typeof InstallTrigger !== 'undefined') block = true;
+			// 	if (blocks.includes("safari")) if (/constructor/i.test(window.HTMLElement) || (function (p) { return p.toString() === "[object SafariRemoteNotification]"; })(!window['safari'] || (typeof safari !== 'undefined' && safari.pushNotification))) block = true;
+			// 	if (blocks.includes("ie")) if (/*@cc_on!@*/false || !!document.documentMode) block = true;
+			// 	if (blocks.includes("edge")) if (!isIE && !!window.StyleMedia) block = true;
+			// 	if (blocks.includes("chrome")) if (!!window.chrome && !!window.chrome.webstore) block = true;
+			// 	if (blocks.includes("blink")) if ((isChrome || isOpera) && !!window.CSS) block = true;
+			// }
 
 			// set allias
 			if (commands[key].alias) {
 				for (var j=0; j<commands[key].alias.length; j++) {
-					if (block) {
-						obj[commands[key].alias[j]] = commands[key].block_action;
-					} else {
-						obj[commands[key].alias[j]] = commands[key].action;
-					}
+					// if (block) {
+					// 	obj[commands[key].alias[j]] = commands[key].block_action;
+					// } else {
+					obj[commands[key].alias[j]] = commands[key].action;
+					// }
 				}
 			}
 
 			// set action
-			if (block) { 
-				obj[key] = commands[key].block_action;
-			} else {
-				obj[key] = commands[key].action;
-			}
+			// if (block) { 
+			// 	obj[key] = commands[key].block_action;
+			// } else {
+			obj[key] = commands[key].action;
+			// }
+			
 		}; return obj;	
 	})()
 });
