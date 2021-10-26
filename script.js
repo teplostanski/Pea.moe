@@ -78,10 +78,21 @@ function scrollTitle() {
 
 var degree = 0
 function hueCommand(newDegree){
-	if (typeof InstallTrigger !== 'undefined') return; // firefox
 	degree = newDegree
-	document.body.style.filter = "hue-rotate("+degree+"deg)";
 	document.getElementById("hueslider").value = degree;
+
+	const ids = [
+		"bgcolor",
+		"door",
+		"mascot",
+		"pageheader",
+		"ayano",
+		"pagecontent",
+	];
+
+	for (const id of ids) {
+		document.getElementById(id).style.filter = "hue-rotate("+degree+"deg)";
+	}
 }
 
 // random color (fuck chrome)
@@ -92,16 +103,15 @@ function hueCommand(newDegree){
 
 // hue rotate slider (fuck chrome)
 
-//document.getElementById("hueslider").addEventListener("input", function(e) {
-//	document.body.style.filter = "hue-rotate("+e.srcElement.value+"deg)";
-//	degree = e.srcElement.value
-//})
-
 document.getElementById("hueslider").addEventListener("input", function(e) {
-	document.getElementById("fuckchrome").style = "font-size: "+e.srcElement.value+"px";
-	document.getElementById("fuckchrome").style.filter = "hue-rotate("+e.srcElement.value+"deg)";
-	degree = e.srcElement.value
+	hueCommand(e.target.value)
 })
+
+// document.getElementById("hueslider").addEventListener("input", function(e) {
+// 	document.getElementById("fuckchrome").style = "font-size: "+e.srcElement.value+"px";
+// 	document.getElementById("fuckchrome").style.filter = "hue-rotate("+e.srcElement.value+"deg)";
+// 	degree = e.srcElement.value
+// })
 
 
 
@@ -117,7 +127,7 @@ document.getElementById("hueslider").addEventListener("input", function(e) {
 // 	if (degree > 360){degree = 1};
 // 	degree++;
 // 	rainbowColorTimeout = setTimeout("rainbowColor()", 5);
-// 	document.body.style.filter = "hue-rotate("+degree+"deg)";
+// 	hueCommand(degree);
 // }
 
 // window.addEventListener("keydown", function(e) {
@@ -141,7 +151,7 @@ function rainbowColor() {
 	else {if (degree >= 360){degree = 1};}
 	degree = degree + rainbowStep;
 	rainbowColorTimeout = setTimeout("rainbowColor()", 1);
-	document.body.style.filter = "hue-rotate("+degree+"deg)";
+	hueCommand(degree);
 	rainbowRelatedSlider.value = degree;
 }
 
@@ -157,7 +167,7 @@ function rainbowToggle() {
 var earthquakeActive = false
 function earthquake() {
 	let page = document.getElementById("page");
-	let ayanoe = document.getElementById("ayano");
+	let ayano = document.getElementById("ayano");
 	let mascot = document.getElementById("mascot");
 	page.style.transform = ("rotate(0.3deg)");
 	ayano.style.bottom = ("0px");
