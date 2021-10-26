@@ -21,6 +21,29 @@ var Term = function(obj) {
 	this.history = [];
 	this.historyIndex = -1;
 
+	this.saveHistory = function() {
+		localStorage.setItem(
+			"terminalHistory",
+			JSON.stringify(
+				this.history.slice(-20) // last 20 commands
+			)
+		)
+	}
+
+	this.loadHistory = function() {
+		try {
+			const terminalHistoryJson = localStorage.getItem("terminalHistory")
+			if (terminalHistoryJson == null) return;
+
+			this.history = JSON.parse(terminalHistoryJson);
+			this.historyIndex = 0;
+		} catch(error) {
+			// do nothing
+		}
+	}
+
+	this.loadHistory()
+
 	this.getHistory = function() {
 		return this.history[this.history.length-this.historyIndex];
 	}
@@ -34,8 +57,8 @@ var Term = function(obj) {
 
 	this.charify = function(msg) {
 		return msg.replace(/[\u00A0-\u9999<>\&]/gim, function(i) {
-			return "&#"+i.charCodeAt(0)+";"
-;		});
+			return "&#"+i.charCodeAt(0)+";";
+		});
 	}
 
 	// term functions
@@ -103,6 +126,7 @@ var Term = function(obj) {
 
 				this.history.push(this.child.input.value);
 				this.historyIndex = 0;
+				this.saveHistory();
 
 				this.exec(cmd.trim());
 
