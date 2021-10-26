@@ -270,4 +270,4 @@ var cookie = {
 //	}
 //}
 
-fuckFirefox(30)
+// fuckFirefox(30)
